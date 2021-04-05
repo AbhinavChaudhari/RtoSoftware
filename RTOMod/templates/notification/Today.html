@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="container-fluid mt-5">    
+     <h5 class="text-center text-uppercase border-bottom-0 border-dark">Vahaan Today Notifications</h5>
+    <table id="" class="display table table-bordered">
+      <thead>
+      <tr><a href={% url 'SentSMSvahan' %} class="btn btn-warning my-2">Sent To all</a></tr>
+        <tr>
+          <th>Sr.No</th>
+          <th>Name</th>
+          <th>Contact</th>
+          <th>Total</th>
+          <th>paid</th>
+          <th>Remaining</th>
+         
+        </tr>
+      </thead>
+      <tbody>
+
+        {% for sarthi in SarthiData %}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{sarthi.Name}}</td>
+          <td>{{sarthi.contact}}</td>
+          <td>{{sarthi.total}}</td>
+          <td>{{sarthi.Paid}}</td>
+          <td>{{sarthi.Remaining}}</td>
+        
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+<div class="container-fluid">
+  
+  <h5 class="text-center text-uppercase border-bottom-0 border-dark">Sarthi Todays Notifications </h5>
+  <table id="" class="display table table-bordered">
+    <thead>
+      <tr>
+        <th>Sr.No</th>
+        <th>Name</th>
+        <th>Contact</th>
+        <th>Total</th>
+        <th>paid</th>
+        <th>Remaining</th>
+        <th>Sms</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for sarthi in VahaanData %}
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{sarthi.Name}}</td>
+        <td>{{sarthi.contact}}</td>
+        <td>{{sarthi.total}}</td>
+        <td>{{sarthi.Paid}}</td>
+        <td>{{sarthi.Remaining}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+</table>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class='mt-4'>
+<a href={% url 'RTOModVahaanRegister' %} class="btn btn-primary ">New Registration</a>
+<a href={% url 'importsarthi' %} class="btn btn-success ">Export </a>
+<a href={% url 'importonlysarthi' %} class="btn btn-warning ">Import</a>
+</div>
+
+
+<div class="table-responsive mt-4">
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Sr.No</th>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>License No</th>
+                <th>Remaining Amt</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Sr.No</th>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>License No</th>
+                <th>Remaining Amt</th>
+                <th>Action</th>
+            </tr>
+        </tfoot>
+        <tbody>
+            {% for vhn in AllVhn %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{vhn.Name}}</td>
+                <td>{{vhn.contact}}</td>
+                <td>{{vhn.LicenseNo}}</td>
+                <td>{{vhn.Remaining}}</td>
+                <td><a href={% url 'RTOModVahaanView' id=vhn.pk %} class="btn btn-sm btn-success">View</a>
+                <a class="btn btn-sm btn-primary" href={% url 'RTOModVahaanEdit' id=vhn.pk %}>Edit</a>
+                <a href={% url 'RTOModVahaanDelete' id=vhn.pk %} class="btn btn-sm btn-danger">Delete</i></a></td>
+            </tr>
+            {% endfor %}
+         
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

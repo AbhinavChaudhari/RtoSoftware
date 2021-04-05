@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h4 class="text-center text-uppercase mt-2 ">Cash Report</h4>
+<form action={% url 'RTOModReportsCash' %} method="post">{% csrf_token %}
+    <div class="form-inline  justify-content-center mb-5">
+      
+        <label for="">From Date : </label>
+        <input  type="date" class="form-control mx-1" name="FromDate" id="" required>
+
+        <label for="">To Date : </label>
+        <input  type="date" class="form-control mx-1" name="ToDate" id="" required>
+
+        <button  type="submit" class="btn btn-primary" name="cashReport">Generate</button>
+    </div>
+</form>
+<hr>
+<div class="container-fluid">    
+     <h5 class="text-center text-uppercase border-bottom-0 border-dark">Vahaan Cash Report </h5>
+    <table id="" class="display table table-bordered text-center">
+      <thead>
+        <tr>
+          <th>Sr.No</th>
+          <th>Name</th>
+          <th>Contact</th>
+          <th>Total</th>
+          <th>paid</th>
+          <th>Remaining</th>
+          <th>Print</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        {% for sarthi in SarthiData %}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{sarthi.Name}}</td>
+          <td>{{sarthi.contact}}</td>
+          <td>{{sarthi.total}}</td>
+          <td>{{sarthi.Paid}}</td>
+          <td>{{sarthi.Remaining}}</td>
+          <td><a href={% url 'vahanprint' id=sarthi.pk %} class="btn btn-sm btn-success">Print</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+<div class="container-fluid">
+  
+  <h5 class="text-center text-uppercase border-bottom-0 border-dark">Sarthi Cash Report </h5>
+  <table id="" class="display table table-bordered text-center">
+    <thead>
+      <tr>
+        <th>Sr.No</th>
+        <th>Name</th>
+        <th>Contact</th>
+        <th>Total</th>
+        <th>paid</th>
+        <th>Remaining</th>
+        <th>Print</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for sarthi in VahaanData %}
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{sarthi.Name}}</td>
+        <td>{{sarthi.contact}}</td>
+        <td>{{sarthi.total}}</td>
+        <td>{{sarthi.Paid}}</td>
+        <td>{{sarthi.Remaining}}</td>
+        <td><a href={% url 'sarthiprint' id=sarthi.pk %} class="btn btn-sm btn-success">Print</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+</table>
+</div>
+  
+
+{% endblock %}

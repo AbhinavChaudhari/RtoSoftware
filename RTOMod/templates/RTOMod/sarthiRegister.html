@@ -1,0 +1,173 @@
+{% extends 'base.html' %} {% block content %}
+<h3 class='my-3 text-uppercase text-center'>VAHAAN REGISTRATION</h3>
+<form method="POST" action={% url 'RTOModSarthiRegister' %}>{% csrf_token %}
+    <input type="hidden" name="systemDate" value={% now "Y-m-j" %}>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="">Name</label>
+                <input required type="text" class="form-control" name="Name" id="" />
+            </div>
+            <div class="form-group">
+                <label for="">Contact</label>
+                <input required type="tel" class="form-control" name="Contact" id="" />
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="">Address</label>
+                <textarea  class="form-control" name="Address" id="" rows="5"></textarea>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="">Vechicle No</label>
+                <input  type="text" class="form-control" name="VehicleNo" id="" />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="sel1">Class</label>
+                <select  class="form-control" id="sel1" name="ClassID">
+                    {% for SARClass in SARClasses %}
+                    <option value={{SARClass.titleid}}>{{SARClass.title}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    </div>
+        <div class="mx-3">
+            <div class="form-group">
+                <div class="">
+                    <h6>Insurance </h6>
+                    <div class="form-inline">
+                        <label for="number">No :</label>
+                        <input  type="text" class="form-control" name="InsuranceNo" id="number" />
+                        <label class="mx-2" for="pwd">Start Date</label>
+                        <input  type="date" class="form-control" name="InsuranceStartDate" />
+                        <label class="mx-2" for="pwd">End Date :</label>
+                        <input  type="date" class="form-control" name="InsuranceExpiryDate" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h6>PUC</h6>
+                <div class="form-inline">
+                    <label for="number">No :</label>
+                    <input  type="text" class="form-control" name="PUCNo" id="number" />
+                    <label class="mx-2" for="pwd">Start Date</label>
+                    <input  type="date" class="form-control" name="PUCStartDate" />
+                    <label class="mx-2" for="pwd">End Date :</label>
+                    <input  type="date" class="form-control" name="PUCExpiryDate" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h6>Fitness </h6>
+                <div class="form-inline">
+                    <label for="number">No :</label>
+                    <input  type="text" class="form-control" name="FitnessNo" id="number" />
+                    <label class="mx-2" for="pwd">Start Date</label>
+                    <input  type="date" class="form-control" name="FitnessStartDate" />
+                    <label class="mx-2" for="pwd">End Date :</label>
+                    <input  type="date" class="form-control" name="FitnessExpiryDate" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h6>Permit </h6>
+                <div class="form-inline">
+                    <label for="number">No :</label>
+                    <input  type="text" class="form-control" name="PermitNo" id="number" />
+                    <label class="mx-2" for="pwd">Start Date</label>
+                    <input  type="date" class="form-control" name="PermitStartDate" />
+                    <label class="mx-2" for="pwd">End Date :</label>
+                    <input  type="date" class="form-control" name="PermitExpiryDate" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h6>Tax </h6>
+                <div class="form-inline">
+                    <label for="number">No :</label>
+                    <input  type="text" class="form-control" name="TaxNo" id="number" />
+                    <label class="mx-2" for="pwd">Start Date</label>
+                    <input  type="date" class="form-control" name="TaxStartDate" />
+                    <label class="mx-2" for="pwd">End Date :</label>
+                    <input  type="date" class="form-control" name="TaxExpiryDate" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h6>G.T </h6>
+                <div class="form-inline">
+                    <label for="number">No :</label>
+                    <input  type="text" class="form-control" name="GTNo" id="number" />
+                    <label class="mx-2" for="pwd">Start Date</label>
+                    <input  type="date" class="form-control" name="GTStartDate" />
+                    <label class="mx-2" for="pwd">End Date :</label>
+                    <input  type="date" class="form-control" name="GTExpiryDate" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h6>Professional Tax </h6>
+                <div class="form-inline">
+                    <label for="number">No :</label>
+                    <input  type="text" class="form-control" name="PTNo" id="number" />
+                    <label class="mx-2" for="pwd">Start Date</label>
+                    <input  type="date" class="form-control" name="PTStartDate" />
+                    <label class="mx-2" for="pwd">End Date :</label>
+                    <input  type="date" class="form-control" name="PTExpiryDate" />
+                </div>
+            </div>
+
+        </div>
+
+        <div class="">
+            <h6>Services</h6>
+            <div class="container-fluid">
+                <div class="row">
+                    {% for SARService in SARServices %}
+                    <div class="col-md-4">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" name="myservice"
+                                value={{SARService.titleid}}>{{SARService}}
+                        </label>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+
+        </div>
+        <div class="py-3">
+
+            <label class="mx-2">Service Expiry Date :<span >*</span></label>
+            <input required type="date" class="form-control col-md-4 text-center" name="serviceExpiryDate" />
+
+        </div>
+        <div class="mt-3">
+            <h6>Payment</h6>
+            <div class="form-inline">
+              <label for="number">Total:</label>
+              <input  type="text" class="form-control" name="total" id="amtTotal" />
+              <label class="mx-2" for="pwd">Paid:</label>
+              <input  type="text" class="form-control" name="amtPaid" id="amtPaid" />
+              <label class="mx-2" for="pwd">Remainig:</label>
+              <input  readonly type="text" class="form-control" name="amtRemaining" id="amtRemaining" />
+            </div>
+          </div>
+
+        <button type="submit" class="btn btn-primary float-right" name="SarthiRegister">Submit</button>
+        <button type="submit" class="btn btn-danger float-right mx-2">Reset</button>
+
+        <br>
+        <br>
+
+</form>
+
+
+{% endblock %}

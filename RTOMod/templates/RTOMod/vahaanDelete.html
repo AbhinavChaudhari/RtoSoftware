@@ -1,0 +1,97 @@
+{% extends 'base.html' %} {% block content %}
+<h3>Delete Saarthi</h3>
+Name :#{{vhn.Name}}
+<hr />
+
+<form method="POST" action={% url 'RTOModVahaanDelete' id=vhn.id %}>{% csrf_token %}
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="">Name<span class="text-danger">*</span></label>
+        <input readonly type="text" class="form-control" name="name" value={{vhn.Name}} id="" />
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="">Contact<span class="text-danger">*</span></label>
+        <input readonly type="tel" class="form-control" value={{vhn.contact}}  name="contact" id="" />
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="">DOB<span class="text-danger">*</span></label>
+        <input readonly type="date" class="form-control" value={{vhn.DOB}}  name="dob" id="" />
+      </div>
+    </div>
+       <div class="col-md-6">
+      <div class="form-group">
+        <label for="sel1">Class :</label>
+        <select disabled class="form-control" id="sel1" name="classid">
+          {% for vhnClass in vhnClasses %}
+            <option  {% if vhn.Class == vhnClass.titleid %} selected {% endif %} value={{vhnClass.titleid}}>{{vhnClass.title}}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="">Address<span class="text-danger">*</span></label>
+        <textarea readonly class="form-control" name="address" id="" rows="5">{{vhn.Address}}</textarea>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="">Application No<span class="text-danger">*</span></label>
+        <input readonly type="text" class="form-control" name="applicationNO" value={{vhn.ApplicationNo}} id="" />
+      </div>
+      <div class="form-group">
+        <label for="">Enrollment No<span class="text-danger">*</span></label>
+        <input readonly type="text" class="form-control" value={{vhn.EnrollmentNo}} name="enrollmentNO" id="" />
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="">Learning No<span class="text-danger">*</span></label>
+        <input readonly type="text" class="form-control" name="learningNO" value={{vhn.LearningNo}}  id="" />
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="">License No<span class="text-danger">*</span></label>
+        <input readonly type="text" class="form-control"  value={{vhn.LicenseNo}}  name="licenseNO" id="" />
+      </div>
+    </div>
+  </div>
+  <div class="">
+    <h6>Services</h6>
+    <div class="container-fluid">
+          <div class="row">
+
+      {% for vhnService in vhnServices %}
+      <div class="col-md-3">
+        <label class="form-check-label">
+          <input disabled {% if vhnService.titleid in VSTs %} checked {% endif %} type="checkbox" class="form-check-input" name="myservice" value={{vhnService.titleid}}>{{vhnService}}
+        </label>
+      </div>
+      {% endfor %}
+
+    </div>
+    </div>
+  <div class="">
+    <h6>Payment</h6>
+    <div class="form-inline">
+      <label for="number">Total:<span class="text-danger">*</span></label>
+      <input readonly type="number" class="form-control" name="total"  value={{vhn.total}} id="amtTotal"/>
+      <label class="mx-2" for="pwd">Paid:<span class="text-danger">*</span></label>
+      <input readonly type="number" class="form-control"  value={{vhn.Paid}}  name="paid" id="amtPaid"/>
+      <label class="mx-2" for="pwd">Remainig:<span class="text-danger">*</span></label>
+      <input readonly type="number" class="form-control"  value={{vhn.Remaining}}  name="remaining" id="amtRemaining"/>
+    </div>
+  </div>
+
+    <h6 class="text-right">Sure Want to Delete this Vahaan??</h6>
+  <button type="submit" class="btn btn-danger float-right" name="vahaanDelete" >Delete</button>
+</form>
+{% endblock %}

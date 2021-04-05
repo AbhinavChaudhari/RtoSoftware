@@ -1,0 +1,163 @@
+{% extends 'base.html' %} {% block content %}
+<h3 class='my-3 text-uppercase text-center'>Edit Vahaan</h3>
+#{{SAR.Name}}
+<form method="POST" action={% url 'RTOModSarthiEdit' id=SAR.id %}>{% csrf_token %}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="">Name<span class="text-danger">*</span></label>
+                <input disabled type="text" class="form-control" name="Name" id="" value={{SAR.Name}} />
+            </div>
+            <div class="form-group">
+                <label for="">Contact<span class="text-danger">*</span></label>
+                <input disabled type="tel" class="form-control" name="Contact" id="" value={{SAR.contact}} />
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="">Address<span class="text-danger">*</span></label>
+                <textarea disabled class="form-control" name="Address" id="" rows="5">{{SAR.Address}}</textarea>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="">Vechicle No<span class="text-danger">*</span></label>
+                <input disabled type="text" class="form-control" name="VehicleNo" id=""  value={{SAR.vehicleNo}} />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+              <label for="sel1">Class :</label>
+              <select disabled class="form-control" id="sel1" name="classid">
+                {% for SARClass in SARClasses %}
+                  <option  {% if SAR.ClassId == SARClass.titleid %} selected {% endif %} value={{SARClass.titleid}}>{{SARClass.title}}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+    </div>
+        <div class="mx-3">
+            <div class="form-group">
+                <div class="">
+                    <h6>Insurance </h6>
+                    <div class="form-inline">
+                        <label for="number">No :<span class="text-danger">*</span></label>
+                        <input disabled type="text" class="form-control" name="InsuranceNo" value={{SAR.InsuranceNo}} id="number" />
+                        <label class="mx-2" for="pwd">Start Date<span class="text-danger">*</span></label>
+                        <input disabled type="date" class="form-control" name="InsuranceStartDate" value={{SAR.InsuranceStartDate}} />
+                        <label class="mx-2" for="pwd">End Date :<span class="text-danger">*</span></label>
+                        <input disabled type="date" class="form-control" name="InsuranceExpiryDate" value={{SAR.InsuranceExpiryDate}} />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h6>PUC</h6>
+                <div class="form-inline">
+                    <label for="number">No :<span class="text-danger">*</span></label>
+                    <input disabled type="text" class="form-control" name="PUCNo" value={{SAR.PUCNo}} id="number" />
+                    <label class="mx-2" for="pwd">Start Date<span class="text-danger">*</span></label>
+                    <input disabled type="date" class="form-control" name="PUCStartDate" value={{SAR.PUCStartDate}} />
+                    <label class="mx-2" for="pwd">End Date :<span class="text-danger">*</span></label>
+                    <input disabled type="date" class="form-control" name="PUCExpiryDate" value={{SAR.PUCExpiryDate}} />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h6>Fitness </h6>
+                <div class="form-inline">
+                    <label for="number">No :<span class="text-danger">*</span></label>
+                    <input disabled type="text" class="form-control" name="FitnessNo" value={{SAR.FitnessNo}} id="number" />
+                    <label class="mx-2" for="pwd">Start Date<span class="text-danger">*</span></label>
+                    <input disabled type="date" class="form-control" name="FitnessStartDate" value={{SAR.FitnessStartDate}} />
+                    <label class="mx-2" for="pwd">End Date :<span class="text-danger">*</span></label>
+                    <input disabled type="date" class="form-control" name="FitnessExpiryDate" value={{SAR.FitnessExpiryDate}} />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h6>Permit </h6>
+                <div class="form-inline">
+                    <label for="number">No :<span class="text-danger">*</span></label>
+                    <input disabled type="text" class="form-control" name="PermitNo" value={{SAR.PermitNo}} id="number" />
+                    <label class="mx-2" for="pwd">Start Date<span class="text-danger">*</span></label>
+                    <input disabled type="date" class="form-control" name="PermitStartDate" value={{SAR.PermitStartDate}} />
+                    <label class="mx-2" for="pwd">End Date :<span class="text-danger">*</span></label>
+                    <input disabled type="date" class="form-control" name="PermitExpiryDate" value={{SAR.PermitExpiryDate}} />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h6>Tax </h6>
+                <div class="form-inline">
+                    <label for="number">No :<span class="text-danger">*</span></label>
+                    <input disabled type="text" class="form-control" name="TaxNo" value={{SAR.TaxNo}} id="number" />
+                    <label class="mx-2" for="pwd">Start Date<span class="text-danger">*</span></label>
+                    <input disabled type="date" class="form-control" name="TaxStartDate" value={{SAR.TaxStartDate}} />
+                    <label class="mx-2" for="pwd">End Date :<span class="text-danger">*</span></label>
+                    <input disabled type="date" class="form-control" name="TaxExpiryDate" value={{SAR.TaxExpiryDate}} />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h6>G.T </h6>
+                <div class="form-inline">
+                    <label for="number">No :<span class="text-danger">*</span></label>
+                    <input disabled type="text" class="form-control" name="GTNo" value={{SAR.GTNo}} id="number" />
+                    <label class="mx-2" for="pwd">Start Date<span class="text-danger">*</span></label>
+                    <input disabled type="date" class="form-control" name="GTStartDate" value={{SAR.GTStartDate}} />
+                    <label class="mx-2" for="pwd">End Date :<span class="text-danger">*</span></label>
+                    <input disabled type="date" class="form-control" name="GTExpiryDate" value={{SAR.GTExpiryDate}} />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h6>Professional Tax </h6>
+                <div class="form-inline">
+                    <label for="number">No :<span class="text-danger">*</span></label>
+                    <input disabled type="text" class="form-control" name="PTNo" value={{SAR.PTNo}} id="number" />
+                    <label class="mx-2" for="pwd">Start Date<span class="text-danger">*</span></label>
+                    <input disabled type="date" class="form-control" name="PTStartDate" value={{SAR.PTStartDate}} />
+                    <label class="mx-2" for="pwd">End Date :<span class="text-danger">*</span></label>
+                    <input disabled type="date" class="form-control" name="PTExpiryDate" value={{SAR.PTExpiryDate}} />
+                </div>
+            </div>
+
+        </div>
+
+        <div class="">
+            <h6>Services</h6>
+            <div class="container-fluid">
+                  <div class="row">
+        
+              {% for SARService in SARServices %}
+              <div class="col-md-3">
+                <label class="form-check-label">
+                  <input disabled {% if SARService.titleid in SSTs %} checked {% endif %} type="checkbox" class="form-check-input" name="myservice" value={{SARService.titleid}}>{{SARService}}
+                </label>
+              </div>
+              {% endfor %}
+        
+            </div>
+            </div>
+        
+          </div>
+        <div class="mt-3">
+            <h6>Payment</h6>
+            <div class="form-inline">
+              <label for="number">Total:<span class="text-danger">*</span></label>
+              <input disabled type="number" class="form-control" name="total" id="amtTotal" value={{SAR.total}} />
+              <label class="mx-2" for="pwd">Paid:<span class="text-danger">*</span></label>
+              <input disabled type="number" class="form-control" name="amtPaid" id="amtPaid" value={{SAR.Paid}} />
+              <label class="mx-2" for="pwd">Remainig:<span class="text-danger">*</span></label>
+              <input disabled type="number" class="form-control" name="amtRemaining" id="amtRemaining" value={{SAR.Remaining}} />
+            </div>
+          </div>
+
+
+        <br>
+        <br>
+
+</form>
+{% endblock %}
